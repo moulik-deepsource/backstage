@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { ENTITY_DEFAULT_NAMESPACE } from './constants';
 import { parseEntityName, parseEntityRef, serializeEntityRef } from './ref';
 
 describe('ref', () => {
@@ -27,7 +28,7 @@ describe('ref', () => {
       expect(() => parseEntityName('b/c')).toThrow(/kind/);
       expect(parseEntityName('a:c')).toEqual({
         kind: 'a',
-        namespace: 'default',
+        namespace: ENTITY_DEFAULT_NAMESPACE,
         name: 'c',
       });
       expect(() => parseEntityName('c')).toThrow(/kind/);
@@ -109,7 +110,7 @@ describe('ref', () => {
       ).toEqual({ kind: 'a', namespace: 'y', name: 'c' });
       expect(parseEntityName('a:c', { defaultKind: 'x' })).toEqual({
         kind: 'a',
-        namespace: 'default',
+        namespace: ENTITY_DEFAULT_NAMESPACE,
         name: 'c',
       });
       expect(
@@ -117,7 +118,7 @@ describe('ref', () => {
       ).toEqual({ kind: 'x', namespace: 'y', name: 'c' });
       expect(parseEntityName('c', { defaultKind: 'x' })).toEqual({
         kind: 'x',
-        namespace: 'default',
+        namespace: ENTITY_DEFAULT_NAMESPACE,
         name: 'c',
       });
     });
@@ -143,7 +144,7 @@ describe('ref', () => {
       ).toEqual({ kind: 'a', namespace: 'y', name: 'c' });
       expect(
         parseEntityName({ kind: 'a', name: 'c' }, { defaultKind: 'x' }),
-      ).toEqual({ kind: 'a', namespace: 'default', name: 'c' });
+      ).toEqual({ kind: 'a', namespace: ENTITY_DEFAULT_NAMESPACE, name: 'c' });
       expect(
         parseEntityName(
           { name: 'c' },
@@ -152,7 +153,7 @@ describe('ref', () => {
       ).toEqual({ kind: 'x', namespace: 'y', name: 'c' });
       expect(parseEntityName({ name: 'c' }, { defaultKind: 'x' })).toEqual({
         kind: 'x',
-        namespace: 'default',
+        namespace: ENTITY_DEFAULT_NAMESPACE,
         name: 'c',
       });
       // empty strings are errors, not defaults
