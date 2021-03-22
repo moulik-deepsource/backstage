@@ -1,8 +1,35 @@
 version = 1
 
+exclude_patterns = [
+ "**/examples/",
+ "packages/app/**",
+ "packages/backend/**",
+ "**/templates/"
+]
+
 [[analyzers]]
 name = "javascript"
 enabled = true
 
   [analyzers.meta]
   plugins = ["react"]
+  dependency_file_paths = [
+    "/packages/backend-common/",
+    "/packages/catalog-model/",
+    "/packages/cli-common/",
+    "/packages/config/",
+    "/packages/config-loader/",
+    "/packages/cli/",
+    "/packages/core-api/",
+    "/packages/core/",
+    "/packages/create-app/",
+    "/packages/dev-utils/",
+    "/packages/docgen/",
+    "/packages/e2e-test/",
+    "/packages/techdocs-cli/",
+    "/packages/techdocs-cli/",
+    "/packages/techdocs-container/techdocs-core/",
+    "/packages/test-utils-core/",
+    "/packages/theme/",
+    "/packages/test-utils/"
+  ]
